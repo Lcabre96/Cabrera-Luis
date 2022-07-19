@@ -1,86 +1,68 @@
+/* class Placas {
+    constructor(producto, precio, stock) {
+        this.producto = producto;
+        this.precio = precio;
+        this.stock = stock;
+    }  
+}
 
-let peliculaA = "Batman";
-let peliculaB = "Buzz";
-let peliculaC = "Toystory";
+const placaA = new Placas ("RTX 2060", 20000, 20);
+const placaB = new Placas ("RTX 2080", 26000, 10);
+const placaC = new Placas ("RTX 3060", 35000, 15); 
+ */
 
-let precioEntradaA = 800;
-let precioEntradaB = 400;
-let precioEntradaC = 600;
+let placaA = "Rtx 2060"
+let placaB = "Rtx 2080"
+let placaC = "Rtx 3060"
 
-let stockEntradas = 5;
+let precioA = 20000;
+let precioB = 26000;
+let precioC = 35000;
 
-let entradas = prompt("Ingresá cuantas entradas quieres:");
+let stockA = 20;
+let stockB = 10;
+let stockC = 15;
+
+let productos = parseInt(prompt("Ingresá cuántos productos queres comprar: \n- Rtx 2060\n- Rtx 2080\n- Rtx 3060"));
+
 let precioTotal = 0;
 
-for (let i = 0; i <= entradas; i++) {
+function calculoPrecio(cantidad, precio) {
+    precioTotal += cantidad * precio;
+}
 
-    let entradasCine = prompt("Por favor ingresa la película que quieres ver: \n-Batman \n-Buzz \n-Toystory");
-
-
-    if (entradasCine == "Batman") {
-
-        if (entradas < stockEntradas) {
-            precioTotal += entradas * precioEntradaA;
-            break;
-        }
-    
-        else if (stockEntradas >= entradas) {
-            precioTotal += entradas * precioEntradaA;
-            alert("El precio total de las entradas es de: $" + (entradas * precioEntradaA));
-        }
-        else {
-            alert("Nos quedamos sin entradas, disponemos de: " + stockEntradas + " entradas.");
-            break;
-        }
+function calculoStock(cantidad, stock, precio) {
+    if (stock >= cantidad) {
+        calculoPrecio(cantidad, precio);
+        alert("El precio total es de: $" +(cantidad * precio));
     }
-
-
-    if (entradasCine == "Buzz") {
-
-        if (entradas <= stockEntradas) {
-            precioTotal += entradas * precioEntradaB;
-            break;
-        }
-
-        else if (stockEntradas >= entradas) {
-            precioTotal += entradas * precioEntradaB;
-            alert("El precio total de las entradas es de: $" + (entradas * precioEntradaB));
-        }
-        else {
-            alert("Nos quedamos sin entradas, disponemos de: " + stockEntradas + " entradas.");
-            break;
-        }
-    }
-
-    if (entradasCine == "Toystory") {
-
-        if (entradas <= stockEntradas) {
-            precioTotal += entradas * precioEntradaC;
-            break;
-        }
-
-        else if (stockEntradas >= entradas) {
-            precioTotal += entradas * precioEntradaC;
-            alert("El precio total de las entradas es de: $" + (entradas * precioEntradaC));
-        }
-        else{
-            alert("Nos quedamos sin entradas, disponemos de: " + stockEntradas + " entradas.");
-            break;
-        }
-    }
-    if (entradasCine != "Batman" && entradasCine != "Buzz" && entradasCine != "Toystory") {
-        alert("No tenemos esa película en cartelera.")
-        break;
+    else {
+        alert("No tenemos esa cantidad en stock. Nuestro stock es de " + stock + " unidades.");
     }
 }
 
-if (entradas >= 1 && entradas <5) {
-    alert("total de su compra: $" + (precioTotal));
+for (let i = 0; i < productos; i++) {
+
+    let compra1 = prompt("Ingresá la placa que querías comprar: \n- Rtx 2060\n- Rtx 2080\n- Rtx 3060");
+    let cantidadCompra = parseInt(prompt("Ingresá cuántas unidades querias comprar:"));
+
+    if (compra1 == "Rtx 2060") {
+        calculoStock(cantidadCompra, stockA, precioA);
+    }
+    else if (compra1 == "Rtx 2080") {
+        calculoStock(cantidadCompra, stockB, precioB);
+    }
+    else if (compra1 == "Rtx 3060") {
+        calculoStock(cantidadCompra, stockC, precioC);
+    }
+    else {
+        alert("No tenemos ese producto");
+    }
 }
 
-
-
-
+if (productos > 1) {
+    alert("El precio final de su compra es de $: " + precioTotal);
+}
 
 
 
