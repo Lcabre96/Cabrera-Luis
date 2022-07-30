@@ -19,14 +19,14 @@ let nombreProductos = listaProductos.map((placas) => placas.producto);
 let productos = parseInt(prompt("¡Bienvenido!, ingresá cuantos productos quieres comprar:"));
 
 
-while(isNaN(productos)){
+while(isNaN(productos)){ //agregar condicion de si es menor a 1
     alert("No ingresaste un número, Por favor intentá de nuevo.")
     productos = parseInt(prompt("¡Bienvenido!, ingresá cuantos productos quieres comprar:"));
 }
 
 let precioTotal = 0;
 
-function calculoPrecio(cantidad, precio) {
+function calculoPrecio(cantidad, precio) { //esta funcion con la de abajo se pueden juntar y hace una unica más sencilla
     precioTotal += cantidad * precio;
 }
 
@@ -44,17 +44,19 @@ function calculoStock(cantidad, producto)  {
 for (let i = 0; i < productos; i++) {
     
     let compra1 = prompt("Ingresá la placa que querías comprar: \n" + nombreProductos.join("\n")).toLowerCase();
+    //y si ingreso un producto que no existe?
+    //porque si no existe me pregunta la cantidad?
     let cantidadCompra= parseInt(prompt("¿Cuántas unidades querés?"));
     
 
-    if (compra1 == "rtx2060") {
-        calculoStock(cantidadCompra, placaA);
+    if (compra1 == "rtx2060") { //uso incorrecto de condicionales
+        calculoStock(cantidadCompra, placaA); //esto es igual
     }
     else if (compra1 == "rtx2080") {
-        calculoStock(cantidadCompra, placaB);
+        calculoStock(cantidadCompra, placaB); //a esto, solo que con otro producto
     }
     else if (compra1 == "rtx3060") {
-        calculoStock(cantidadCompra, placaC);
+        calculoStock(cantidadCompra, placaC); //ahora ya aprndimos a usar funciones de orden superior: usalas!
     }
     else if (compra1 == "rtx1660") {
         calculoStock(cantidadCompra, placaD);
