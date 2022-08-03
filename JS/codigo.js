@@ -16,11 +16,12 @@ let listaProductos = [placaA, placaB, placaC, placaD];
 
 let nombreProductos = listaProductos.map((producto) => producto.nombre);
 
-let cantidad = parseInt(prompt("¡Bienvenido!, ingresá cuantos productos quieres comprar:"));
+let cantidad = parseInt(prompt("¡Bienvenido!, ingresá cuantos productos querés comprar:"));
+
 
 while (isNaN(cantidad) || cantidad < 1) {
     alert("Entrada errónea, Por favor intentá de nuevo.")
-    cantidad = parseInt(prompt("¡Bienvenido!, ingresá cuantos productos quieres comprar:"));
+    cantidad = parseInt(prompt("¡Bienvenido!, ingresá cuantos productos querés comprar:"));
 }
 
 let precioTotal = 0;
@@ -29,30 +30,39 @@ function calculoPrecio(cantidad, precio) {
     precioTotal += cantidad * precio;
 }
 // INTENTÉ JUNTAR AMBAS FUNCIONES, PERO SE ME ROMPE EL CÓDIGO Y NO SE DONDE ESTA EL PROBLEMA..
+// LE QUISE PASAR POR PARAMETRO LA FUNCION, PERO NO ME SALE
 function calculoStock(cantidad, producto) {
     if (producto.stock >= cantidad) {
-        alert("El precio total es de: $" + (cantidad * precio));
-        calculoPrecio(cantidad, precio); 
+        alert("El precio total es de: $" + (cantidad * producto.precio));
     }
     else {
-        alert("No tenemos esa cantidad en stock. Nuestro stock es de: "   +stock+  "unidades.");
+        alert(`No disponemos de esa cantidad en stock. Nuestro stock actual es de: ${producto.stock} unidades`);
     }   // NO ME ENTRA A ESTE ELSE POR MAS QUE ME PASE DEL STOCK...
+        
 }
 
 for (let i = 0; i < cantidad; i++) {
 
     let pedido = "" 
     let pedidoEncontrado = {} 
-    do {
+    do {    
         pedido = prompt("Ingrese la placa que desea comprar: \n " + nombreProductos.join("\n ")).toLowerCase()
+
+        // SI EL USUARIO TIPEA CUALQUIER COSA, VOVLER A PREGUNTAR.
+        
         console.log(pedido)
         pedidoEncontrado = listaProductos.filter(cadaProducto => cadaProducto.nombre === pedido)
         console.log(pedidoEncontrado)
         pedidoEncontrado = pedidoEncontrado[0]
-    } while (!pedido)
+    } while (!pedido) // ESTA CORRECCION QUE ME HICISTE ACA, PORQUE ESTA EL SIGNO ESE DELANTE? 
+    if(pedido != nombreProductos){
+        pedido = prompt("Ingrese la placa que desea comprar: \n " + nombreProductos.join("\n ")).toLowerCase()
+    }else {
+        alert("El producto ingresado, no se encuentra en nuestro catálogo.")
+    }
     let cantidadCompra = parseInt(prompt("¿Cuántas unidades querés?"));
     calculoPrecio(cantidadCompra, pedidoEncontrado.precio);
-   
+    // ACA CUANDO PONGO TODOS LOS PRODUCTOS BIEN, ME TIRA ERROR DEL PEDIDOENCONTRADO.PRECIO....
 }
 
 if (cantidad >= 1) {
