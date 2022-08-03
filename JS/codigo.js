@@ -1,71 +1,73 @@
 class Placa {
-    constructor(producto, precio, stock) {
-        this.producto = producto;
+    constructor(nombre, precio, stock) {
+        this.nombre = nombre;
         this.precio = precio;
         this.stock = stock;
-    }  
+    }
 }
 
-const placaA = new Placa ("rtx2060", 20000, 20);
-const placaB = new Placa ("rtx2080", 26000, 10);
-const placaC = new Placa ("rtx3060", 35000, 15); 
-const placaD = new Placa ("rtx1660", 12000, 5);
-
+const placaA = new Placa("rtx2060", 20000, 20);
+const placaB = new Placa("rtx2080", 26000, 10);
+const placaC = new Placa("rtx3060", 35000, 15);
+const placaD = new Placa("rtx1660", 12000, 5);
 
 let listaProductos = [placaA, placaB, placaC, placaD];
 
-let nombreProductos = listaProductos.map((placas) => placas.producto);
 
-let productos = parseInt(prompt("¡Bienvenido!, ingresá cuantos productos quieres comprar:"));
+let nombreProductos = listaProductos.map((producto) => producto.nombre);
 
+let cantidad = parseInt(prompt("¡Bienvenido!, ingresá cuantos productos quieres comprar:"));
 
-while(isNaN(productos)){ //agregar condicion de si es menor a 1
-    alert("No ingresaste un número, Por favor intentá de nuevo.")
-    productos = parseInt(prompt("¡Bienvenido!, ingresá cuantos productos quieres comprar:"));
+while (isNaN(cantidad) || cantidad < 1) {
+    alert("Entrada errónea, Por favor intentá de nuevo.")
+    cantidad = parseInt(prompt("¡Bienvenido!, ingresá cuantos productos quieres comprar:"));
 }
 
 let precioTotal = 0;
 
-function calculoPrecio(cantidad, precio) { //esta funcion con la de abajo se pueden juntar y hace una unica más sencilla
+function calculoPrecio(cantidad, precio) {
     precioTotal += cantidad * precio;
 }
-
-function calculoStock(cantidad, producto)  {
+// INTENTÉ JUNTAR AMBAS FUNCIONES, PERO SE ME ROMPE EL CÓDIGO Y NO SE DONDE ESTA EL PROBLEMA..
+function calculoStock(cantidad, producto) {
     if (producto.stock >= cantidad) {
-        calculoPrecio(cantidad, producto.precio);
-        alert("El precio total es de: $" +(cantidad * producto.precio));
+        alert("El precio total es de: $" + (cantidad * precio));
+        calculoPrecio(cantidad, precio); 
     }
     else {
-        alert("No tenemos esa cantidad en stock. Nuestro stock es de " + stock + " unidades.");
-    }
+        alert("No tenemos esa cantidad en stock. Nuestro stock es de: "   +stock+  "unidades.");
+    }   // NO ME ENTRA A ESTE ELSE POR MAS QUE ME PASE DEL STOCK...
 }
 
+for (let i = 0; i < cantidad; i++) {
 
-for (let i = 0; i < productos; i++) {
-    
-    let compra1 = prompt("Ingresá la placa que querías comprar: \n" + nombreProductos.join("\n")).toLowerCase();
-    //y si ingreso un producto que no existe?
-    //porque si no existe me pregunta la cantidad?
-    let cantidadCompra= parseInt(prompt("¿Cuántas unidades querés?"));
-    
-
-    if (compra1 == "rtx2060") { //uso incorrecto de condicionales
-        calculoStock(cantidadCompra, placaA); //esto es igual
-    }
-    else if (compra1 == "rtx2080") {
-        calculoStock(cantidadCompra, placaB); //a esto, solo que con otro producto
-    }
-    else if (compra1 == "rtx3060") {
-        calculoStock(cantidadCompra, placaC); //ahora ya aprndimos a usar funciones de orden superior: usalas!
-    }
-    else if (compra1 == "rtx1660") {
-        calculoStock(cantidadCompra, placaD);
-    }
-    else {
-        alert("No tenemos ese producto");
-    }
+    let pedido = "" 
+    let pedidoEncontrado = {} 
+    do {
+        pedido = prompt("Ingrese la placa que desea comprar: \n " + nombreProductos.join("\n ")).toLowerCase()
+        console.log(pedido)
+        pedidoEncontrado = listaProductos.filter(cadaProducto => cadaProducto.nombre === pedido)
+        console.log(pedidoEncontrado)
+        pedidoEncontrado = pedidoEncontrado[0]
+    } while (!pedido)
+    let cantidadCompra = parseInt(prompt("¿Cuántas unidades querés?"));
+    calculoPrecio(cantidadCompra, pedidoEncontrado.precio);
+   
 }
 
-if (productos >= 1) {
+if (cantidad >= 1) {
     alert("El precio final de su compra es de $: " + precioTotal);
+}
+
+for (const producto of listaProductos) {
+
+    if (producto.stock != 0) {
+
+        let card = document.createElement("div");
+
+        card.innerHTML = `<h3>${producto.nombre}</h3>
+                          <p><b>Precio:</b> $${producto.precio}</p>
+                          <p>Unidades en stock: <b>${producto.stock}</b></p>`;
+        document.body.append(card);
+    }
 }
