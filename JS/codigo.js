@@ -31,6 +31,9 @@ function calculoPrecio(cantidad, precio) {
 }
 // INTENTÉ JUNTAR AMBAS FUNCIONES, PERO SE ME ROMPE EL CÓDIGO Y NO SE DONDE ESTA EL PROBLEMA..
 // LE QUISE PASAR POR PARAMETRO LA FUNCION, PERO NO ME SALE
+
+//si no sale ahora: tranqui! el tema es que de alguna forma funcione!!!
+
 function calculoStock(cantidad, producto) {
     if (producto.stock >= cantidad) {
         alert("El precio total es de: $" + (cantidad * producto.precio));
@@ -47,22 +50,18 @@ for (let i = 0; i < cantidad; i++) {
     let pedidoEncontrado = {} 
     do {    
         pedido = prompt("Ingrese la placa que desea comprar: \n " + nombreProductos.join("\n ")).toLowerCase()
-
-        // SI EL USUARIO TIPEA CUALQUIER COSA, VOVLER A PREGUNTAR.
-        
         console.log(pedido)
         pedidoEncontrado = listaProductos.filter(cadaProducto => cadaProducto.nombre === pedido)
         console.log(pedidoEncontrado)
         pedidoEncontrado = pedidoEncontrado[0]
-    } while (!pedido) // ESTA CORRECCION QUE ME HICISTE ACA, PORQUE ESTA EL SIGNO ESE DELANTE? 
-    if(pedido != nombreProductos){
-        pedido = prompt("Ingrese la placa que desea comprar: \n " + nombreProductos.join("\n ")).toLowerCase()
-    }else {
-        alert("El producto ingresado, no se encuentra en nuestro catálogo.")
-    }
-    let cantidadCompra = parseInt(prompt("¿Cuántas unidades querés?"));
+    } while (!pedidoEncontrado) // ESTA CORRECCION QUE ME HICISTE ACA, PORQUE ESTA EL SIGNO ESE DELANTE? 
+    //el do-while: hace algo mientras ocurra algo
+    //en este caso mientras NO EXISTA EL pedido encontrado, va a seguir preguntando
+    let cantidadCompra = parseInt(prompt("¿Cuántas unidades querés?")); //y si no es un numero??? //aca deberias agregar algo
     calculoPrecio(cantidadCompra, pedidoEncontrado.precio);
     // ACA CUANDO PONGO TODOS LOS PRODUCTOS BIEN, ME TIRA ERROR DEL PEDIDOENCONTRADO.PRECIO....
+    //te armé un par de funciones... pero tenian algunos bugs para ver si los solucionabas!
+    //ahora te anda todo bien... PERO TODA LA INTERACCION (PEDIDOS DE DATOS) HAY QUE HACERLAS DESDE EL HTML!
 }
 
 if (cantidad >= 1) {
