@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+}
+
+h1 {
+  color: #fff;
+  text-align: center;
+  background-color: #48e;
+}
+
+span {
+  color: #23d331;
+}
+
+.color-fondo {
+  background: #000 !important;
+}
+
+.card {
+  border: none;
+  background-color: white;
+}
+
+.card-img-top {
+  width: 40%;
+  filter: brightness(70%);
+  cursor: pointer;
+  margin: auto;
+  transition: all 1s;
+  transition: all 1s;
+}
+
+.card-img-top:hover {
+  filter: brightness(100%);
+  transform: scale(1.1);
+}
+
+.col {
+  border-style: none;
+}
+
+.card-title,
+.card-text {
+  color: #fff;
+  border: none;
+}
+
+.col {
+  border-style: none;
+}

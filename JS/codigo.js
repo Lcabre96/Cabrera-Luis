@@ -8,8 +8,8 @@ class Placa {
 
 const placaA = new Placa("rtx2060", 20000, 20);
 const placaB = new Placa("rtx2080", 26000, 10);
-const placaC = new Placa("rtx3060", 35000, 15);
-const placaD = new Placa("rtx1660", 12000, 5);
+const placaC = new Placa("rtx3070", 35000, 15);
+const placaD = new Placa("rtx1650", 12000, 5);
 
 let listaProductos = [placaA, placaB, placaC, placaD];
 
@@ -79,5 +79,6 @@ for (const producto of listaProductos) {
                           <p><b>Precio:</b> $${producto.precio}</p>
                           <p>Unidades en stock: <b>${producto.stock}</b></p>`;
         document.body.append(card);
+        card.style.color = "white";
     }
 }
