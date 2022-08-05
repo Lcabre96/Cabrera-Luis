@@ -2,7 +2,7 @@ class Placa {
     constructor(nombre, precio, stock) {
         this.nombre = nombre;
         this.precio = precio;
-        this.stock = stock;
+        this.stock = stock; //AGREGAR FOTO Y DETALLE COMO UN HTML!!!
     }
 }
 
@@ -21,11 +21,33 @@ for (const producto of listaProductos) {
 
         card.innerHTML = `<h3>${producto.nombre}</h3>
                           <p><b>Precio:</b> $${producto.precio}</p>
-                          <p>Unidades en stock: <b>${producto.stock}</b></p>`;
+                          <p>Unidades en stock: <b>${producto.stock}</b></p>`; //ESA CARD DEBERIA SER IGUAL A LA QUE YA TENES EN EL HTML
         document.body.append(card);
         card.style.color = "white";
     }
 }
+
+//ES DECIR DEBERIAS RENDERIZAR TODO ESTO DINAMICAMENTE PARA CADA PRODUCTO QUE DEFINISTE
+{/* <div class="col">
+<div class="color-fondo card align-items-center">
+    <img src=".././images/rtx3070.png" class="card-img-top" alt="RTX3070" data-aos="fade-right"
+        data-aos-delay="300" />
+    <div class="card-body">
+        <h5 class="card-title text-center"><span>RTX </span>3070</h5>
+        <p class="card-text text-center">La Nvidia GeForce RTX 3070 es una tarjeta gráfica de escritorio
+            rápida basada en la arquitectura Ampere. Utiliza el gran chip GA104 y ofrece 5888 núcleos y 8 GB
+            de memoria gráfica GDDR6. El rendimiento en juegos y la resolución 4k está ligeramente por
+            debajo de una RTX 2080 Ti pero claramente más rápido que la antigua RTX 2080 Super.</p>
+        <div id="containerBotonCartas">
+            <button id="boton-cartas">COMPRAR</button>
+        </div>
+
+
+    </div>
+</div>
+</div> */}
+
+
 
 let nombreProductos = listaProductos.map((producto) => producto.nombre);
 
