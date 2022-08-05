@@ -12,6 +12,46 @@
 </head>
 
 <body>
+    <header>
+        <div class="container-nav">
+            <nav class="navbar navbar-expand-lg navbar-dark">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand" href="index.html"><img class="logo" src="./images/logo.png" data-aos="fade-down"
+                            data-aos-easing="linear" data-aos-duration="1300" alt="Logo"></a>
+                    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Productos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Nosotros</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Contacto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Ayuda</a>
+                            </li>
+                        </ul>
+                        <form class="d-flex">
+                            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit" aria-label="Buscar">Buscar</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+
     <h1>Insumos Electrónicos</h1>
     <div class="row row-cols-1 row-cols-md-2 g-0">
         <div class="col">
@@ -24,6 +64,9 @@
                         rendimiento
                         grafico de la premiada arquitectura NVIDIA TuringTM. Es un potenciador para los juegos más
                         populares de hoy, e incluso más rápido con los títulos más recientes.</p>
+                    <div id="containerBotonCartas">
+                        <button id="boton-cartas">COMPRAR</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,6 +83,9 @@
                         shaders, 45 ROP, 120 TMU, 240 KI-cores y un bus de memoria de 192 bits que conecta 6 GB de
                         GDDR6
                         (velocidad de reloj de 7 GHz que conduce a 14 GHz efectivos y 336 GB/s).</p>
+                    <div id="containerBotonCartas">
+                        <button id="boton-cartas">COMPRAR</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -56,6 +102,9 @@
                         tiene 2944 unidades shader, 8 GB GDDR6 VRAM y una interfaz de 256 bits que funciona a 14 GHz
                         y
                         ofrece hasta 448 GB/s.</p>
+                    <div id="containerBotonCartas">
+                        <button id="boton-cartas">COMPRAR</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -69,9 +118,19 @@
                         rápida basada en la arquitectura Ampere. Utiliza el gran chip GA104 y ofrece 5888 núcleos y 8 GB
                         de memoria gráfica GDDR6. El rendimiento en juegos y la resolución 4k está ligeramente por
                         debajo de una RTX 2080 Ti pero claramente más rápido que la antigua RTX 2080 Super.</p>
+                    <div id="containerBotonCartas">
+                        <button id="boton-cartas">COMPRAR</button>
+                    </div>
+
+
                 </div>
             </div>
         </div>
+    </div>
+    <label class="labelCantidad">¡Bienvenido!, ingresá cuantos productos querés comprar</label>
+    <div class="containerCompra1">
+        <input type="number" id="cantidadCompra" />
+        <button id="boton-compra1">Enviar</button>
     </div>
 
     <script src="JS/codigo.js"></script>

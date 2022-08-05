@@ -1,3 +1,35 @@
+/* NAV */
+.navbar {
+  background-color: #000;
+}
+
+.logo {
+  width: 6vw;
+}
+
+.nav-link {
+  transition: all .5s;
+}
+
+.nav-link:hover {
+  color: #48e !important;
+}
+
+.btn-outline-success {
+  color: #48e;
+  border-color: #48e;
+}
+
+.btn-outline-success:hover {
+  background-color: #48e;
+}
+
+
+
+
+
+/* PRODUCTOS */
+
 * {
   margin: 0;
   padding: 0;
@@ -8,10 +40,12 @@ body {
   background-color: #000;
 }
 
+
 h1 {
   color: #fff;
   text-align: center;
-  background-color: #48e;
+  background: #000;
+
 }
 
 span {
@@ -53,4 +87,63 @@ span {
 
 .col {
   border-style: none;
+}
+
+.labelCantidad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  ;
+  color: #fff;
+  margin-top: 30px;
+}
+
+.containerCompra1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 20px 0;
+}
+
+
+#containerBotonCartas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#boton-cartas {
+  border-radius: 50%;
+  color: #fff;
+  background: #23d331;
+  cursor: pointer;
+  padding: 2px 20px;
+  transition: all .5s;
+}
+
+
+
+#boton-cartas:hover {
+  border-radius: 40%;
+  color: #23d331;
+  background: #fff;
+  cursor: pointer;
+  padding: 2px 20px;
+}
+
+#boton-compra1 {
+  padding: 2px 20px;
+  margin-left: 5px;
+  transition: all .5s;
+  font-weight: bold;
+}
+
+
+#boton-compra1:hover {
+  padding: 2px 20px;
+  margin-left: 5px;
+  color: #fff;
+  background: #23d331;
+  font-weight: bold;
 }
