@@ -1,8 +1,8 @@
-class Placa {
+/* class Placa {
     constructor(nombre, precio, stock) {
         this.nombre = nombre;
         this.precio = precio;
-        this.stock = stock; //AGREGAR FOTO Y DETALLE COMO UN HTML!!!
+        this.stock = stock;
     }
 }
 
@@ -21,33 +21,11 @@ for (const producto of listaProductos) {
 
         card.innerHTML = `<h3>${producto.nombre}</h3>
                           <p><b>Precio:</b> $${producto.precio}</p>
-                          <p>Unidades en stock: <b>${producto.stock}</b></p>`; //ESA CARD DEBERIA SER IGUAL A LA QUE YA TENES EN EL HTML
+                          <p>Unidades en stock: <b>${producto.stock}</b></p>`;
         document.body.append(card);
         card.style.color = "white";
     }
 }
-
-//ES DECIR DEBERIAS RENDERIZAR TODO ESTO DINAMICAMENTE PARA CADA PRODUCTO QUE DEFINISTE
-{/* <div class="col">
-<div class="color-fondo card align-items-center">
-    <img src=".././images/rtx3070.png" class="card-img-top" alt="RTX3070" data-aos="fade-right"
-        data-aos-delay="300" />
-    <div class="card-body">
-        <h5 class="card-title text-center"><span>RTX </span>3070</h5>
-        <p class="card-text text-center">La Nvidia GeForce RTX 3070 es una tarjeta gráfica de escritorio
-            rápida basada en la arquitectura Ampere. Utiliza el gran chip GA104 y ofrece 5888 núcleos y 8 GB
-            de memoria gráfica GDDR6. El rendimiento en juegos y la resolución 4k está ligeramente por
-            debajo de una RTX 2080 Ti pero claramente más rápido que la antigua RTX 2080 Super.</p>
-        <div id="containerBotonCartas">
-            <button id="boton-cartas">COMPRAR</button>
-        </div>
-
-
-    </div>
-</div>
-</div> */}
-
-
 
 let nombreProductos = listaProductos.map((producto) => producto.nombre);
 
@@ -120,3 +98,167 @@ function compra(){
     }
 }
 
+ */
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    const Clickbutton = document.querySelectorAll('.button');
+    const tbody = document.querySelector('.tbody');
+    const botonVaciar = document.querySelector('#boton-vaciar');
+
+
+    let carrito = []
+
+
+    Clickbutton.forEach(btn => {
+        btn.addEventListener('click', addToCarritoItem)
+    })
+
+
+    function addToCarritoItem(e) {
+        const button = e.target
+        const item = button.closest('.card');
+        const itemTitle = item.querySelector('.card-title').textContent;
+        const itemPrice = item.querySelector('.precio').textContent;
+        const itemImg = item.querySelector('.card-img-top').src;
+
+        const newItem = {
+            title: itemTitle,
+            precio: itemPrice,
+            img: itemImg,
+            cantidad: 1
+        }
+
+        addItemCarrito(newItem);
+    }
+
+
+    function addItemCarrito(newItem) {
+
+        const alert = document.querySelector('.alert');
+
+        setTimeout(function () {
+            alert.classList.add('hide');
+        }, 1000)
+        alert.classList.remove('hide');
+
+        const InputElemnto = tbody.getElementsByClassName('input-elemento');
+        for (let i = 0; i < carrito.length; i++) {
+            if (carrito[i].title.trim() === newItem.title.trim()) {
+                carrito[i].cantidad++;
+                const inputValue = InputElemnto[i]
+                inputValue.value++;
+                CarritoTotal()
+                return null;
+            }
+        }
+
+        carrito.push(newItem);
+
+        renderCarrito()
+    }
+
+
+    function renderCarrito() {
+        tbody.innerHTML = ''
+        carrito.map(item => {
+            const tr = document.createElement('tr');
+            tr.classList.add('ItemCarrito');
+            const Content = `
+        
+        <th scope="row">1</th>
+                <td class="table-productos">
+                  <img src=${item.img}  alt="">
+                  <h6 class="title">${item.title}</h6>
+                </td>
+                <td class="table-price"><p>${item.precio}</p></td>
+                <td class="table-cantidad">
+                  <input type="number" min="1" value=${item.cantidad} class="input-elemento">
+                  <button class="delete btn btn-danger">x</button>
+                </td>
+        
+        `
+            tr.innerHTML = Content;
+            tbody.append(tr);
+
+            tr.querySelector(".delete").addEventListener('click', removerItemCarrito);
+            tr.querySelector(".input-elemento").addEventListener('change', sumaCantidad);
+        })
+        CarritoTotal()
+    }
+
+    function CarritoTotal() {
+        let Total = 0;
+        const itemCartTotal = document.querySelector('.itemCartTotal');
+        carrito.forEach((item) => {
+            const precio = Number(item.precio.replace("$", ''));
+            Total = Total + precio * item.cantidad
+        })
+
+        itemCartTotal.innerHTML = `Total $${Total}`
+        addLocalStorage()
+    }
+
+    function removerItemCarrito(e) {
+        const buttonDelete = e.target
+        const tr = buttonDelete.closest(".ItemCarrito");
+        const title = tr.querySelector('.title').textContent;
+        for (let i = 0; i < carrito.length; i++) {
+
+            if (carrito[i].title.trim() === title.trim()) {
+                carrito.splice(i, 1)
+            }
+        }
+
+        const alert = document.querySelector('.remove');
+
+        setTimeout(function () {
+            alert.classList.add('remove');
+        }, 1000);
+        alert.classList.remove('remove');
+
+        tr.remove()
+        CarritoTotal()
+    }
+
+    function sumaCantidad(e) {
+        const sumaInput = e.target
+        const tr = sumaInput.closest(".ItemCarrito");
+        const title = tr.querySelector('.title').textContent;
+        carrito.forEach(item => {
+            if (item.title.trim() === title) {
+                sumaInput.value < 1 ? (sumaInput.value = 1) : sumaInput.value;//IMPLEMENTACIÓN DE OPERADOR AVANZADO
+                item.cantidad = sumaInput.value;
+                CarritoTotal()
+            }
+        })
+    }
+
+    function vaciarCarrito() {
+        // Limpiamos los productos guardados
+        carrito = [];
+        // Renderizamos los cambios
+        renderCarrito();
+        // Borra LocalStorage
+        localStorage.removeItem('carrito');
+
+    }
+
+
+
+    function addLocalStorage() {
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+    window.onload = function () {
+        const storage = JSON.parse(localStorage.getItem('carrito'));
+        if (storage) {
+            carrito = storage;
+            renderCarrito()
+        }
+    }
+
+    botonVaciar.addEventListener('click', vaciarCarrito);
+
+});

@@ -1,149 +1,133 @@
-/* NAV */
-.navbar {
-  background-color: #000;
-}
-
-.logo {
-  width: 6vw;
-}
-
-.nav-link {
-  transition: all .5s;
-}
-
-.nav-link:hover {
-  color: #48e !important;
-}
-
-.btn-outline-success {
-  color: #48e;
-  border-color: #48e;
-}
-
-.btn-outline-success:hover {
-  background-color: #48e;
-}
-
-
-
-
-
-/* PRODUCTOS */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  background-color: #000;
+  background-color: #000000;
+}
+
+header,
+.alert {
+  z-index: 100;
+}
+
+.descripcion {
+  height: 35px;
+  overflow: hidden;
+  transition: height .3s ease-in .3s;
+}
+
+.descripcion:hover {
+  height: 150px;
+  cursor: pointer;
 }
 
 
-h1 {
-  color: #fff;
-  text-align: center;
-  background: #000;
 
+.carrito {
+  min-height: 80vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.table-productos {
+  display: flex;
+}
+
+.table-productos>img {
+  width: 9rem;
+  object-fit: contain;
+  border-radius: 6px;
+  margin-right: 20px;
+}
+
+.table-cantidad>input {
+  width: 40px;
+  border: none;
+  outline: 0;
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 30px;
+  margin-bottom: 20px;
+}
+
+
+#add-btn {
+  border-radius: 45%;
+  background-color: #fff;
+  color: #19e112;
+  font-weight: bold;
+  display: inline-block;
+}
+
+#add-btn:hover {
+  border-radius: 45%;
+  background-color: #19e112;
+  color: #fff;
+  font-weight: bold;
+}
+
+#boton-vaciar {
+  background-color: #fff;
+  color: #000000;
+  font-weight: bold;
+}
+
+#boton-vaciar:hover {
+  background-color: #f00;
+  color: #fff;
+  font-weight: bold;
+}
+
+
+.hide,
+.remove {
+  display: none;
 }
 
 span {
-  color: #23d331;
+  color: #19e112;
 }
 
-.color-fondo {
-  background: #000 !important;
-}
 
-.card {
-  border: none;
-  background-color: white;
-}
-
-.card-img-top {
-  width: 40%;
-  filter: brightness(70%);
-  cursor: pointer;
-  margin: auto;
-  transition: all 1s;
-  transition: all 1s;
-}
-
-.card-img-top:hover {
-  filter: brightness(100%);
-  transform: scale(1.1);
-}
-
-.col {
-  border-style: none;
-}
-
-.card-title,
-.card-text {
-  color: #fff;
-  border: none;
-}
-
-.col {
-  border-style: none;
-}
-
-.labelCantidad {
+.footer .redes {
   display: flex;
   justify-content: center;
   align-items: center;
-  ;
+  font-size: 2rem;
+}
+
+.redes a {
+  margin: 20px 20px;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  background: #333;
   color: #fff;
-  margin-top: 30px;
+  line-height: 50px;
+  font-size: 18px;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+  transition: .2;
 }
 
-.containerCompra1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  padding: 20px 0;
+.redes i:hover a {
+  filter: blur(1px);
 }
 
-
-#containerBotonCartas {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.redes a:hover {
+  transform: translateY(-3px) scale(1.05);
+  filter: none;
 }
 
-#boton-cartas {
-  border-radius: 50%;
-  color: #fff;
-  background: #23d331;
-  cursor: pointer;
-  padding: 2px 20px;
-  transition: all .5s;
+.redes .facebook:hover {
+  background: #273780;
 }
 
-
-
-#boton-cartas:hover {
-  border-radius: 40%;
-  color: #23d331;
-  background: #fff;
-  cursor: pointer;
-  padding: 2px 20px;
+.redes .instagram:hover {
+  background: #ba1743;
 }
 
-#boton-compra1 {
-  padding: 2px 20px;
-  margin-left: 5px;
-  transition: all .5s;
-  font-weight: bold;
+.redes .visa:hover {
+  background: #0630ef;
 }
 
-
-#boton-compra1:hover {
-  padding: 2px 20px;
-  margin-left: 5px;
-  color: #fff;
-  background: #23d331;
-  font-weight: bold;
+.redes .bitcoin:hover {
+  background: #848d0a;
 }
