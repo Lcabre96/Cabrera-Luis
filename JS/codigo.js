@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const Clickbutton = document.querySelectorAll('.button');
     const tbody = document.querySelector('.tbody');
-    const botonVaciar = document.querySelector('#boton-vaciar');
+   
 
 
     let carrito = []
@@ -234,16 +234,30 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     }
+    
+    const botonVaciar = document.querySelector('#boton-vaciar');
+    botonVaciar.addEventListener('click', vaciarCarrito);
 
     function vaciarCarrito() {
-        // Limpiamos los productos guardados
-        carrito = [];
-        // Renderizamos los cambios
-        renderCarrito();
-        // Borra LocalStorage
-        localStorage.removeItem('carrito');
 
-    }
+        Swal.fire({
+            icon: 'question',
+            title: '¿Estás seguro de vaciar el carrito?',
+            showDenyButton: true,
+            confirmButtonText: 'Vaciar',
+            denyButtonText: `Cancelar`,
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire('¡Carrito vaciado!', '', 'success');
+                // Limpiamos los productos guardados
+              carrito = [];
+                // Renderizamos los cambios
+              renderCarrito();
+                // Borra LocalStorage
+              localStorage.removeItem('carrito');
+            } 
+          })
+    };
 
 
 
@@ -253,12 +267,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.onload = function () {
         const storage = JSON.parse(localStorage.getItem('carrito'));
+        console.log(storage);
         if (storage) {
+            Toastify({
+                text: '¡Tenés productos en el carrito!',
+                className: 'info',
+                gravity: 'top',
+                position: 'right'
+            }).showToast(); 
             carrito = storage;
             renderCarrito()
         }
     }
-
-    botonVaciar.addEventListener('click', vaciarCarrito);
-
 });
