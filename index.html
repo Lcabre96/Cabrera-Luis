@@ -14,6 +14,8 @@
 </head>
 
 <body>
+    <!-- HEADER -->
+
     <header class="container-fluid bg-dark position-sticky top-0">
         <ul class="nav nav-pills mb-3 py-3 container" id="pills-tab" role="tablist">
 
@@ -28,6 +30,9 @@
         </ul>
     </header>
 
+       <!-- HEADER -->
+
+
     <div class="alert container position-sticky top-0 alert-primary hide" role="alert">
         Producto Añadido al carrito!
     </div>
@@ -35,10 +40,15 @@
         Producto removido!
     </div>
 
+
+
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade " id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             1
         </div>
+
+        <!-- PRODUCTOS -->
+
         <div class="tab-pane fade show active container" id="pills-profile" role="tabpanel"
             aria-labelledby="pills-profile-tab">
             <h2 class="h4 m-4 text-primary">Productos</h2>
@@ -174,6 +184,9 @@
                 </div>
             </div>
         </div>
+        <!--  -->
+
+
         <!-- CARRITO -->
         <div class="tab-pane fade carrito" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
             <br>
@@ -196,6 +209,7 @@
                     <h3 class="itemCartTotal text-white">Total: 0</h3>
                 </div>
                 <div class="col d-flex justify-content-end">
+                    <button id="boton-comprar" class="btn btn-success">Comprar</button>
                     <button id="boton-vaciar" class="btn btn-success">Vaciar carrito</button>
                 </div>
             </div>

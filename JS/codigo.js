@@ -234,13 +234,50 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     }
+
+
+    const botonComprar = document.querySelector('#boton-comprar');
+    botonComprar.addEventListener('click', compraTodo);
+    // SE AGREGA API AL BOTÓN DE COMPRAR..
+    function compraTodo() {
+        carrito.length == 0 ? (
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Parece que el carrito está vacío, ¡Agregá productos!',
+            })
+        )  
+           : (fetch("https://ricardofort.herokuapp.com/all")
+            .then((resp) => resp.json())
+            .then((data) => {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Compra realizada con éxito',
+                    text: `¡Gracias por tu compra! : ¡${data.frases[4]}!`,
+                    showConfirmButton: false,
+                    timer: 3500
+                })
+                carrito.length = 0
+                renderCarrito();
+                localStorage.removeItem('carrito');
+            })
+        )
+    }
+
+
     
     const botonVaciar = document.querySelector('#boton-vaciar');
     botonVaciar.addEventListener('click', vaciarCarrito);
 
     function vaciarCarrito() {
-
-        Swal.fire({
+        carrito.length == 0 ? (
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Parece que el carrito está vacío, ¡Agregá productos!',
+            }))
+        : Swal.fire({
             icon: 'question',
             title: '¿Estás seguro de vaciar el carrito?',
             showDenyButton: true,
@@ -263,11 +300,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function addLocalStorage() {
         localStorage.setItem('carrito', JSON.stringify(carrito));
+       
     }
 
     window.onload = function () {
         const storage = JSON.parse(localStorage.getItem('carrito'));
         console.log(storage);
+        console.log(JSON.stringify(storage));
         if (storage) {
             Toastify({
                 text: '¡Tenés productos en el carrito!',
@@ -277,6 +316,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }).showToast(); 
             carrito = storage;
             renderCarrito()
+            
         }
     }
 });
+

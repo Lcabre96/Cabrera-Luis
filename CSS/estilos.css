@@ -64,6 +64,18 @@ header,
   font-weight: bold;
 }
 
+#boton-comprar {
+  background-color: #fff;
+  color: #000000;
+  font-weight: bold;
+}
+
+#boton-comprar:hover {
+  background-color: rgb(6, 238, 17);
+  color: #fff;
+  font-weight: bold;
+}
+
 #boton-vaciar {
   background-color: #fff;
   color: #000000;
